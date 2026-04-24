@@ -1,8 +1,6 @@
  
-TEC-1 microwave induced plasma system for experimentation
+# microwave induced plasma system for experimentation
 
-
- # 1 
 - https://newatlas.com/aircraft/microwave-air-plasma-thruster/
 
  The research described in the *New Atlas* article highlights a fascinating development in propulsion—specifically, the use of a **microwave air plasma thruster**. While the concept is technically sound and has been proven in small-scale laboratory settings, its transition to real-world aviation faces several significant hurdles.
