@@ -135,3 +135,71 @@ for the **Micro-Plasma Indicator**. This setup uses a MOSFET as a digital switch
 **Safety Warning:** The output of that module is several thousand volts. It won't kill a healthy adult, but it provides a very painful "bite" and can easily destroy your microcontroller if a spark jumps to the logic pins. Keep the HV side physically separated from the Arduino side!
 
 
+# Maths
+
+To understand how a microwave plasma thruster generates force, we look at the transition from electrical energy to thermal kinetic energy.
+
+The physics relies on the **Ideal Gas Law** and the relationship between **Mass Flow Rate** and **Exhaust Velocity**.
+
+---
+
+### 1. The Power Conversion
+First, we look at how much energy is being dumped into the air. The power $P$ from the microwave (in Watts) increases the enthalpy of the air.
+
+$$P = \dot{m} \cdot C_p \cdot \Delta T$$
+
+Where:
+* $\dot{m}$ is the **mass flow rate** (kg/s).
+* $C_p$ is the **specific heat capacity** of air.
+* $\Delta T$ is the **change in temperature** (K).
+
+In the Wuhan University study, the temperature reached approximately **1,000°C**. This massive $\Delta T$ causes the air to expand rapidly.
+
+---
+
+### 2. Thrust Equation
+The actual "push" (Thrust, $F$) is determined by the momentum change of the air as it exits the nozzle:
+
+$$F = \dot{m} \cdot v_e + (p_e - p_a) \cdot A_e$$
+
+For a simplified DIY or lab model, we usually focus on the first part (momentum):
+$$F = \dot{m} \cdot v_e$$
+
+Where:
+* $v_e$ is the **exhaust velocity**.
+
+Because the microwave heats the plasma to such high temperatures, the thermal velocity of the particles ($v_{th}$) increases significantly. Based on the kinetic theory of gases:
+
+$$v_{th} = \sqrt{\frac{8 k_B T}{\pi m}}$$
+
+As temperature ($T$) goes up, the velocity of the particles hitting the "back" of your thruster tube increases, resulting in higher thrust.
+
+---
+
+### 3. Efficiency (Thrust-to-Power Ratio)
+The article mentions a performance of **28 N/kW**. This is a measure of how effectively we turn electricity into force. 
+
+$$\text{Efficiency} (\eta) = \frac{F}{P}$$
+
+In the lab results:
+* **Power ($P$):** 400 W ($0.4\text{ kW}$)
+* **Measured Thrust ($F$):** 11 N
+* **Calculation:** $\frac{11\text{ N}}{0.4\text{ kW}} = 27.5\text{ N/kW}$
+
+
+
+---
+
+### 4. The "Scaling" Problem (The Hard Math)
+The reason this isn't on a plane yet is the **Energy Density**. If you want to replace a jet engine (like a CFM56) which produces roughly **120,000 N** of thrust:
+
+1.  Using the lab's **28 N/kW**, you would need: 
+    $$\frac{120,000\text{ N}}{28\text{ N/kW}} \approx 4,285\text{ kW} \text{ (or 4.3 Megawatts)}$$
+2.  A Tesla Model S battery holds about **100 kWh**.
+3.  At full thrust, that battery would be drained in:
+    $$\frac{100\text{ kWh}}{4,285\text{ kW}} \approx 0.023\text{ hours} \approx \mathbf{1.4 \text{ minutes}}$$
+
+This is why the math shows that while the **thruster** is efficient, the **batteries** currently lack the "oomph" to keep it running for a full flight.
+
+
+
